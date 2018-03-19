@@ -9,6 +9,8 @@ import java.util.Scanner;
 
 public class ConverterApp {
     public static void main(String[] args) throws IOException {
+
+        System.out.println("Paste your url below");
         Scanner scanner = new Scanner(System.in);
         String baseUrl = "https://www.ceneo.pl/Komputery";
 
@@ -16,9 +18,9 @@ public class ConverterApp {
         List<String> productList = webScrap.scrap(baseUrl);
 
         ObjectMapper objectMapper = new ObjectMapper();
-        String list = objectMapper.writeValueAsString(productList);
+        String listAsJson = objectMapper.writeValueAsString(productList);
 
         Converter converter = new Converter();
-        converter.createXmlFile(list, "product");
+        converter.createXmlFile(listAsJson, "product");
     }
 }

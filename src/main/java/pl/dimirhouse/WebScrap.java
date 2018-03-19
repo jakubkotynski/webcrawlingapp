@@ -5,8 +5,6 @@ import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
-
-import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +13,7 @@ public class WebScrap {
     private String listXPath = "//div[@class='cat-prod-row js_category-list-item js_clickHashData js_man-track-event ']";
     private String nameXPath = ".//strong[@class='cat-prod-row-name']/a";
     private String priceXPath = ".//span[@class='price']";
-    private String pictureXPath = ".//a[@class='js_clickHash ']";
+    private String pictureXPath = ".//a[@class='js_clickHash ']/a";
 
     public List<String> scrap(String baseUrl){
 
@@ -48,13 +46,6 @@ public class WebScrap {
                     String jsonString = mapper.writeValueAsString(item);
 
                     jsonList.add(jsonString);
-
-//                    try{
-//                        PrintStream printStream = new PrintStream(new FileOutputStream("./list.xml", true));
-//                        printStream.println(jsonString);
-//                    } catch (FileNotFoundException e){
-//                        System.out.println(e);
-//                    }
                 }
             }
         } catch (Exception e) {
