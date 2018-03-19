@@ -5,7 +5,8 @@ import java.math.BigDecimal;
 public class ItemInfo {
 
     private String title;
-    private BigDecimal price;
+    private String price;
+    private String picture;
     private String url;
 
     public String getTitle() {
@@ -16,12 +17,20 @@ public class ItemInfo {
         this.title = title;
     }
 
-    public BigDecimal getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
     public String getUrl() {

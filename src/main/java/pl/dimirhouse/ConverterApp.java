@@ -1,22 +1,24 @@
 package pl.dimirhouse;
 
-import org.xml.sax.SAXException;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
-import static pl.dimirhouse.Converter.stringToXml;
-
 public class ConverterApp {
-    public static void main(String[] args)
-            throws ParserConfigurationException, TransformerException, SAXException, IOException {
+    public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
-        String baseUrl = "https://www.ceneo.pl/;szukaj-filmy+sensacyjne";
+        String baseUrl = "https://www.ceneo.pl/Komputery";
+
+        WebScrap webScrap = new WebScrap();
+        List<String> productList = webScrap.scrap(baseUrl);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String list = objectMapper.writeValueAsString(productList);
 
         Converter converter = new Converter();
-        converter.convertUrl(baseUrl);
-
-        //stringToXml(baseUrl);
+        converter.createXmlFile(list, "product");
     }
 }
