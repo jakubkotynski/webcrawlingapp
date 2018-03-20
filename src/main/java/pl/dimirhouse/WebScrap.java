@@ -5,6 +5,12 @@ import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+import org.w3c.dom.Document;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,11 +42,22 @@ public class WebScrap {
                     HtmlElement itemPrice = htmlItem.getFirstByXPath(priceXPath);
                     HtmlElement itemPicture = htmlItem.getFirstByXPath(pictureXPath);
 
+               // pictureXPath -> ".//a[@class='js_clickHash ']/a";
+
+                    org.jsoup.nodes.Document doc = Jsoup.parse(baseUrl);
+                    Element img = doc.body().select(pictureXPath).first();
+                    String src = img.attr("src");
+
+//                        org.jsoup.nodes.Document doc = Jsoup.connect(baseUrl).get();
+//                        Element image = doc.select("img").last();
+//                        String url = image.absUrl("src");
+                        System.out.println(src);
+
                     ItemInfo item = new ItemInfo();
                     item.setTitle(itemAnchor.asText());
                     item.setUrl(searchUrl + itemAnchor.getHrefAttribute());
                     item.setPrice(itemPrice.asText());
-                    item.setPicture(itemPicture.asText());
+                   // item.setPicture(itemPicture.asText());
 
                     ObjectMapper mapper = new ObjectMapper();
                     String jsonString = mapper.writeValueAsString(item);

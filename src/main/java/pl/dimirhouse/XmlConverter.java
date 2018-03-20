@@ -6,7 +6,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Converter {
+public class XmlConverter {
 
     public void createXmlFile(String jsonString, String product) throws IOException {
         String xml = convertXml(jsonString, product);

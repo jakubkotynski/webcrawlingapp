@@ -1,6 +1,5 @@
 package pl.dimirhouse;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
@@ -20,7 +19,7 @@ public class ConverterApp {
         ObjectMapper objectMapper = new ObjectMapper();
         String listAsJson = objectMapper.writeValueAsString(productList);
 
-        Converter converter = new Converter();
+        XmlConverter converter = new XmlConverter();
         converter.createXmlFile(listAsJson, "product");
     }
 }
