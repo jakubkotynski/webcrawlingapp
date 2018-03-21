@@ -13,7 +13,8 @@ public class XmlConverter {
         String outputPath = "./productList.xml";
         writeFile(outputPath, xml);
 
-        System.out.println("Process is finnished!");
+        System.out.println("Conversion finnished!\n" +
+                "Check your productList.xml file.");
     }
 
     private String convertXml(String json, String product) throws JSONException {

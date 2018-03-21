@@ -11,7 +11,7 @@ public class ConverterApp {
 
         System.out.println("Paste your url below");
         Scanner scanner = new Scanner(System.in);
-        String baseUrl = "https://www.ceneo.pl/Komputery";
+        String baseUrl = scanner.next();
 
         WebScrap webScrap = new WebScrap();
         List<String> productList = webScrap.scrap(baseUrl);
